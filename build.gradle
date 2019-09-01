@@ -1,4 +1,5 @@
 apply plugin: 'java'
+defaultTasks 'help'
 
 dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
@@ -12,6 +13,28 @@ repositories {
   mavenCentral()
 }
 
-test {
+task android(type: Test) {
   useJUnitPlatform()
+  environment 'PLATFORM', 'android'
+}
+
+task ios(type: Test) {
+  useJUnitPlatform()
+  environment 'PLATFORM', 'ios'
+}
+
+help {
+  doFirst {
+    println ""
+    println "************************************************************************ "
+    println "***                                                                  *** "
+    println "*** Welcome to https://github.com/wikipedia-qa/wikipedia-selenide!   *** "
+    println "***                                                                  *** "
+    println "*** You can run tests by one of the following commands:              *** "
+    println "*** ./gradlew android                                                *** "
+    println "*** ./gradlew ios                                                    *** "
+    println "***                                                                  *** "
+    println "************************************************************************ "
+    println ""
+  }
 }
