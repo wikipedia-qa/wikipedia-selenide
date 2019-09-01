@@ -1,0 +1,51 @@
+package org.wikiqa.infra;
+
+import com.codeborne.selenide.WebDriverRunner;
+import io.appium.java_client.AppiumDriver;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.ScreenOrientation;
+import org.wikiqa.pages.WelcomePageObject;
+
+import java.net.MalformedURLException;
+import java.time.Duration;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
+
+public class CoreTestCase {
+
+    private AppiumDriver driver;
+
+    @BeforeEach
+    void setUp() throws MalformedURLException {
+        driver = Platform.getInstance().getDriver();
+        this.rotateScreenPortrait();
+        WebDriverRunner.setWebDriver(driver);
+        this.skipWelcomePageForIOSApp();
+    }
+
+    @AfterEach
+    void tearDown() {
+        WebDriverRunner.closeWebDriver();
+        driver.quit();
+    }
+
+    protected void rotateScreenPortrait() {
+        driver.rotate(ScreenOrientation.PORTRAIT);
+    }
+
+    protected void rotateScreenLandscape() {
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+    }
+
+    protected void backgroundApp(int seconds) {
+        driver.runAppInBackground(Duration.of(seconds, SECONDS));
+    }
+
+    private void skipWelcomePageForIOSApp() {
+        if (Platform.getInstance().isIOS()) {
+            WelcomePageObject WelcomePageObject = new WelcomePageObject();
+            WelcomePageObject.clickSkip();
+        }
+    }
+}
