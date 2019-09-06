@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.ScreenOrientation;
 import org.wikiqa.pages.WelcomePageObject;
 
@@ -12,6 +13,7 @@ import java.time.Duration;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
+@Tag("mobile")
 public class CoreTestCase {
 
     private AppiumDriver driver;

@@ -14,12 +14,16 @@ repositories {
 }
 
 task android(type: Test) {
-  useJUnitPlatform()
+  useJUnitPlatform{
+    includeTags 'mobile'
+  }
   environment 'PLATFORM', 'android'
 }
 
 task ios(type: Test) {
-  useJUnitPlatform()
+  useJUnitPlatform{
+    includeTags 'mobile'
+  }
   environment 'PLATFORM', 'ios'
 }
 
@@ -32,7 +36,9 @@ task web(type: Test) {
       exceptionFormat "full"
     }
   }
-  useJUnitPlatform ()
+  useJUnitPlatform {
+    includeTags 'web'
+  }
   outputs.upToDateWhen({false})
 
 }
@@ -43,13 +49,14 @@ help {
     println "***                                                                  *** "
     println "*** Welcome to https://github.com/wikipedia-qa/wikipedia-selenide!   *** "
     println "***                                                                  *** "
-    println "*** Requirements:                                                    *** "
+    println "*** Requirements for mobile tests:                                   *** "
     println "*** - start appium server locally                                    *** "
     println "*** - install XCode with iPhone Simulators                           *** "
     println "***                                                                  *** "
     println "*** You can run tests by one of the following commands:              *** "
     println "*** ./gradlew android                                                *** "
     println "*** ./gradlew ios                                                    *** "
+    println "*** ./gradlew web                                                    *** "
     println "***                                                                  *** "
     println "************************************************************************ "
     println ""

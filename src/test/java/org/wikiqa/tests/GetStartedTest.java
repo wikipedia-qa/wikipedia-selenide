@@ -1,5 +1,6 @@
 package org.wikiqa.tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.wikiqa.infra.CoreTestCase;
 import org.wikiqa.infra.Platform;
