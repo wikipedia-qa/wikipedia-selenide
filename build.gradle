@@ -23,6 +23,19 @@ task ios(type: Test) {
   environment 'PLATFORM', 'ios'
 }
 
+task web(type: Test) {
+  systemProperties = System.properties
+
+  testLogging {
+    lifecycle {
+      events "started", "skipped", "failed", "standard_error", "standard_out"
+      exceptionFormat "full"
+    }
+  }
+  useJUnitPlatform ()
+  outputs.upToDateWhen({false})
+
+}
 help {
   doFirst {
     println ""
