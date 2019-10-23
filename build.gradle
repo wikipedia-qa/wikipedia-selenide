@@ -2,10 +2,10 @@ apply plugin: 'java'
 defaultTasks 'help'
 
 dependencies {
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
   testImplementation 'io.appium:java-client:7.2.0'
-  testImplementation 'com.codeborne:selenide:5.2.8'
-  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+  testImplementation 'com.codeborne:selenide:5.4.1'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 
 repositories {
