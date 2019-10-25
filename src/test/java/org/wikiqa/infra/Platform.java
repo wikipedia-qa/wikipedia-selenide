@@ -3,6 +3,7 @@ package org.wikiqa.infra;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -28,10 +29,10 @@ public class Platform {
   AppiumDriver getDriver() throws MalformedURLException {
     URL URL = new URL("http://127.0.0.1:4723/wd/hub");
     if (isAndroid()) {
-      return new AndroidDriver(URL, this.getAndroidDesiredCapabilities());
+      return new AndroidDriver(URL, getAndroidDesiredCapabilities());
     }
     else if (isIOS()) {
-      return new IOSDriver(URL, this.getIOSDesiredCapabilities());
+      return new IOSDriver(URL, getIOSDesiredCapabilities());
     }
     else {
       throw new IllegalArgumentException("Cannot detect type of the Driver. Platform value: " + name);
@@ -42,7 +43,7 @@ public class Platform {
     return PLATFORM_ANDROID.equals(name);
   }
 
-  boolean isIOS() {
+  public boolean isIOS() {
     return PLATFORM_IOS.equals(name);
   }
 
@@ -61,9 +62,11 @@ public class Platform {
   private DesiredCapabilities getIOSDesiredCapabilities() {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("platformName", "iOS");
-    capabilities.setCapability("deviceName", "iPhone 6");
-    capabilities.setCapability("platformVersion", "12.4");
+    capabilities.setCapability("deviceName", "iPhone 11");
+    capabilities.setCapability("platformVersion", "13.0");
     capabilities.setCapability("app", resourcePath("apks/Wikipedia.app"));
+    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "6");
+    capabilities.setCapability("autoAcceptAlerts", true);
     return capabilities;
   }
 
