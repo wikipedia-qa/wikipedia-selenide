@@ -5,6 +5,7 @@ dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
   testImplementation 'io.appium:java-client:7.2.0'
   testImplementation 'com.codeborne:selenide:5.4.1'
+  testImplementation 'com.codeborne:selenide-appium:1.4.3'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 

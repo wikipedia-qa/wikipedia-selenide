@@ -56,6 +56,7 @@ public class Platform {
     capabilities.setCapability("appPackage", "org.wikipedia");
     capabilities.setCapability("appActivity", ".main.MainActivity");
     capabilities.setCapability("app", resourcePath("apks/org.wikipedia.apk"));
+    capabilities.setCapability("newCommandTimeout", 11);
     return capabilities;
   }
 
@@ -63,8 +64,9 @@ public class Platform {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("platformName", "iOS");
     capabilities.setCapability("deviceName", "iPhone 11");
-    capabilities.setCapability("platformVersion", "13.0");
+    capabilities.setCapability("platformVersion", "13.3");
     capabilities.setCapability("app", resourcePath("apks/Wikipedia.app"));
+    capabilities.setCapability("automationName", "XCUITest");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "6");
     capabilities.setCapability("autoAcceptAlerts", true);
     return capabilities;

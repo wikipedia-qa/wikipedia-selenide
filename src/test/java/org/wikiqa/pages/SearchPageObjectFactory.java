@@ -2,12 +2,12 @@ package org.wikiqa.pages;
 
 import org.wikiqa.infra.Platform;
 
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.appium.ScreenObject.screen;
 
 public class SearchPageObjectFactory {
   public static SearchPageObject get() {
       return Platform.getInstance().isAndroid() ?
-          page(AndroidSearchPageObject.class) :
-          page(iOSSearchPageObject.class);
+          screen(AndroidSearchPageObject.class) :
+          screen(iOSSearchPageObject.class);
   }
 }
