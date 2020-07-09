@@ -4,7 +4,7 @@ defaultTasks 'help'
 dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
   testImplementation 'io.appium:java-client:7.3.0'
-  testImplementation 'com.codeborne:selenide:5.12.2'
+  testImplementation 'com.codeborne:selenide:5.13.0'
   testImplementation 'com.codeborne:selenide-appium:1.4.5'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
 }
