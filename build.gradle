@@ -1,48 +1,33 @@
-apply plugin: 'java'
 defaultTasks 'help'
 
-dependencies {
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-  testImplementation 'io.appium:java-client:7.3.0'
-  testImplementation 'com.codeborne:selenide:5.15.1'
-  testImplementation 'com.codeborne:selenide-appium:1.4.5'
-  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+ext {
+  selenideVersion = '5.17.4'
+  junitVersion = '5.7.0'
+  slf4jVersion = '1.7.30'
 }
 
-repositories {
-  jcenter()
-  mavenCentral()
-}
-
-task android(type: Test) {
-  useJUnitPlatform{
-    includeTags 'mobile'
+subprojects {
+  apply plugin: 'java'
+  dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testImplementation("com.codeborne:selenide:$selenideVersion")
+    testImplementation("org.slf4j:slf4j-api:$slf4jVersion")
+    testRuntimeOnly("org.slf4j:slf4j-simple:$slf4jVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
   }
-  environment 'PLATFORM', 'android'
-}
 
-task ios(type: Test) {
-  useJUnitPlatform{
-    includeTags 'mobile'
-  }
-  environment 'PLATFORM', 'ios'
-}
-
-task web(type: Test) {
-  systemProperties = System.properties
-
-  testLogging {
-    lifecycle {
-      events "started", "skipped", "failed", "standard_error", "standard_out"
-      exceptionFormat "full"
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven {
+      url "https://oss.sonatype.org/content/repositories/snapshots"
+      mavenContent {
+        snapshotsOnly()
+      }
     }
   }
-  useJUnitPlatform {
-    includeTags 'web'
-  }
-  outputs.upToDateWhen({false})
-
 }
+
 help {
   doFirst {
     println ""

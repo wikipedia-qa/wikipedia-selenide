@@ -1,0 +1,18 @@
+dependencies {
+  testImplementation("io.appium:java-client:7.4.1")
+  testImplementation("com.codeborne:selenide-appium:1.6.0")
+}
+
+task android(type: Test) {
+  useJUnitPlatform{
+    includeTags 'mobile'
+  }
+  environment 'PLATFORM', 'android'
+}
+
+task ios(type: Test) {
+  useJUnitPlatform{
+    includeTags 'mobile'
+  }
+  environment 'PLATFORM', 'ios'
+}

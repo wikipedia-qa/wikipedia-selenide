@@ -1,0 +1,3 @@
+rootProject.name = 'wikipedia-selenide'
+include ':web'
+include ':mobile'

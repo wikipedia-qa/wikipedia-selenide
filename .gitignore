@@ -3,3 +3,4 @@
 out
 build
 hs_err_pid*
+/mobile/src/test/resources/apks
