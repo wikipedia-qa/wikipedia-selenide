@@ -64,10 +64,9 @@ public class Platform {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("platformName", "iOS");
     capabilities.setCapability("deviceName", "iPhone 11");
-    capabilities.setCapability("platformVersion", "13.3");
+    // Hint: run `xcrun simctl list runtimes` to get available runtimes
+    capabilities.setCapability("platformVersion", "14.4");
     capabilities.setCapability("app", resourcePath("apks/Wikipedia.app"));
-//    capabilities.setCapability("app", "/Users/andrei/Downloads/BSPB.app/");
-//    capabilities.setCapability("app", "/Users/andrei/Downloads/BSPB.40981.app/");
     capabilities.setCapability("automationName", "XCUITest");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "6");
     capabilities.setCapability("autoAcceptAlerts", true);
