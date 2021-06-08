@@ -1,6 +1,6 @@
 dependencies {
   testImplementation("io.appium:java-client:7.5.1")
-  testImplementation("com.codeborne:selenide-appium:1.6.3")
+  testImplementation("com.codeborne:selenide-appium:1.6.5")
 }
 
 task android(type: Test) {
