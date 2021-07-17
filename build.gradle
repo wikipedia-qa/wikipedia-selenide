@@ -1,9 +1,9 @@
 defaultTasks 'help'
 
 ext {
-  selenideVersion = '5.22.0'
+  selenideVersion = '5.23.0'
   junitVersion = '5.7.2'
-  slf4jVersion = '1.7.30'
+  slf4jVersion = '1.7.31'
 }
 
 subprojects {
