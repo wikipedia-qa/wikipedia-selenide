@@ -10,7 +10,10 @@ import org.wikiqa.pages.web.SearchWidget;
 import org.wikiqa.pages.web.searchresults.AdvancedSearchWidget;
 import org.wikiqa.pages.web.searchresults.DidYouMeanWidget;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 
 @Tag("web")
@@ -18,37 +21,37 @@ import static com.codeborne.selenide.Selenide.open;
 public class ArticleSearch {
 
   @BeforeEach
-  void openStartPage(){
+  void openStartPage() {
     open("/wiki");
   }
 
   @Test
-  void shouldFindArticle(){
+  void shouldFindArticle() {
     new SearchWidget().search("Selenide");
     new Article().title.shouldHave(exactText("Selenide"));
     new Article().content.shouldHave(text("chemical compound"));
   }
 
   @Test
-  void shouldRedirectForNotCommonlySpelledArticle(){
+  void shouldRedirectForNotCommonlySpelledArticle() {
     new SearchWidget().search("Belorussia");
     new Article().title.shouldHave(exactText("Belarus"));
     new Article().content.shouldHave(text("Republic of Belarus"));
   }
 
   @Test
-  void shouldShowAdvancedSearchIfNoArticleFound(){
+  void shouldShowAdvancedSearchIfNoArticleFound() {
     new SearchWidget().search("ljaklasvj2");
     new AdvancedSearchWidget().form.shouldBe(visible);
     new AdvancedSearchWidget().searchField.shouldHave(value("ljaklasvj2"));
   }
 
   @Test
-  void shouldShowAdvancedSearchIfMisspelled(){
+  void shouldShowAdvancedSearchIfMisspelled() {
     new SearchWidget().search("Selinide");
     new AdvancedSearchWidget().form.shouldBe(visible);
     new AdvancedSearchWidget().searchField.shouldHave(value("Selinide"));
     new DidYouMeanWidget().header.shouldHave(text("Showing results for selenide"))
-            .shouldHave(text("Search instead for Selinide"));
+        .shouldHave(text("No results found for Selinide."));
   }
 }

@@ -16,14 +16,16 @@ import static com.codeborne.selenide.Selenide.open;
 @ExtendWith({WebTestsSetup.class, VideoExtension.class})
 public class Languages {
   @BeforeEach
-  void openArticlePage(){
+  void openArticlePage() {
     open("/wiki/Selenide");
   }
 
   @Test
-  void shouldChangeLanguage(){
-     new LanguagesWidget().chooseLanguage("Русский");
-     new Article().title.shouldHave(exactText("Селениды"));
-     new Article().content.shouldHave(text("соединения селена"));
+  void shouldChangeLanguage() {
+    new LanguagesWidget().chooseLanguage("Русский");
+
+    Article article = new Article();
+    article.title.shouldHave(exactText("Селениды"));
+    article.content.shouldHave(text("соединения селена"));
   }
 }

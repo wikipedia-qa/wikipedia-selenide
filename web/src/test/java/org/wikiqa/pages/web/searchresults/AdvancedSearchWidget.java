@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class AdvancedSearchWidget {
-
-  public SelenideElement form = $("form#search"),
-          searchField = form.$("#searchText input");
+  public final SelenideElement form = $("form#search");
+  public final SelenideElement searchField = form.$("#searchText input");
 }

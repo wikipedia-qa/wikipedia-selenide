@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class Article {
-
-  public SelenideElement title = $("#firstHeading"),
-          content = $("#bodyContent");
+  public final SelenideElement title = $("#firstHeading");
+  public final SelenideElement content = $("#bodyContent");
 }
