@@ -19,6 +19,7 @@ subprojects {
       exclude group: 'org.awaitility'
       exclude group: 'org.junit.jupiter'
       exclude group: 'org.junit.platform'
+      exclude group: 'commons-io'
     }
   }
 

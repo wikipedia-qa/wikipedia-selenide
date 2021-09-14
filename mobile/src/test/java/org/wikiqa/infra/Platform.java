@@ -1,6 +1,7 @@
 package org.wikiqa.infra;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -26,13 +27,13 @@ public class Platform {
     name = System.getenv("PLATFORM");
   }
 
-  AppiumDriver getDriver() throws MalformedURLException {
+  <T extends MobileElement> AppiumDriver<T> getDriver() throws MalformedURLException {
     URL URL = new URL("http://127.0.0.1:4723/wd/hub");
     if (isAndroid()) {
-      return new AndroidDriver(URL, getAndroidDesiredCapabilities());
+      return new AndroidDriver<>(URL, getAndroidDesiredCapabilities());
     }
     else if (isIOS()) {
-      return new IOSDriver(URL, getIOSDesiredCapabilities());
+      return new IOSDriver<>(URL, getIOSDesiredCapabilities());
     }
     else {
       throw new IllegalArgumentException("Cannot detect type of the Driver. Platform value: " + name);
