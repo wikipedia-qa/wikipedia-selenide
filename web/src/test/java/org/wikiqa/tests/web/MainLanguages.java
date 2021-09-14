@@ -1,9 +1,10 @@
 package org.wikiqa.tests.web;
 
-import com.codeborne.selenide.Condition;
+import com.automation.remarks.junit5.VideoExtension;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.wikiqa.pages.web.MainPage;
 
 import static com.codeborne.selenide.CollectionCondition.size;
@@ -12,6 +13,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
 @Tag("web")
+@ExtendWith({WebTestsSetup.class, VideoExtension.class})
 public class MainLanguages {
 
   @BeforeAll
