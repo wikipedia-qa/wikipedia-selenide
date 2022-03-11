@@ -2,6 +2,8 @@ package org.wikiqa.infra;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.InteractsWithApps;
+import io.appium.java_client.remote.SupportsRotation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -33,15 +35,15 @@ public class CoreTestCase {
     }
 
     protected void rotateScreenPortrait() {
-        driver.rotate(ScreenOrientation.PORTRAIT);
+        ((SupportsRotation) driver).rotate(ScreenOrientation.PORTRAIT);
     }
 
     protected void rotateScreenLandscape() {
-        driver.rotate(ScreenOrientation.LANDSCAPE);
+        ((SupportsRotation) driver).rotate(ScreenOrientation.LANDSCAPE);
     }
 
     protected void backgroundApp(int seconds) {
-        driver.runAppInBackground(Duration.of(seconds, SECONDS));
+        ((InteractsWithApps) driver).runAppInBackground(Duration.of(seconds, SECONDS));
     }
 
     private void skipWelcomePageForIOSApp() {

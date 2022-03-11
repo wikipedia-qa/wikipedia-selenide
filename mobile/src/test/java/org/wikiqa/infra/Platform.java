@@ -1,7 +1,6 @@
 package org.wikiqa.infra;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -27,13 +26,13 @@ public class Platform {
     name = System.getenv("PLATFORM");
   }
 
-  <T extends MobileElement> AppiumDriver<T> getDriver() throws MalformedURLException {
+  AppiumDriver getDriver() throws MalformedURLException {
     URL URL = new URL("http://127.0.0.1:4723/wd/hub");
     if (isAndroid()) {
-      return new AndroidDriver<>(URL, getAndroidDesiredCapabilities());
+      return new AndroidDriver(URL, getAndroidDesiredCapabilities());
     }
     else if (isIOS()) {
-      return new IOSDriver<>(URL, getIOSDesiredCapabilities());
+      return new IOSDriver(URL, getIOSDesiredCapabilities());
     }
     else {
       throw new IllegalArgumentException("Cannot detect type of the Driver. Platform value: " + name);
@@ -64,12 +63,14 @@ public class Platform {
   private DesiredCapabilities getIOSDesiredCapabilities() {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("platformName", "iOS");
-    capabilities.setCapability("deviceName", "iPhone 11");
+    // Hint: run `xcodebuild -showsdks` to see the list of available SDKs
+    capabilities.setCapability("deviceName", "iPhone Simulator");
     // Hint: run `xcrun simctl list runtimes` to get available runtimes
     capabilities.setCapability("platformVersion", "14.4");
-    capabilities.setCapability("app", resourcePath("apks/Wikipedia.app"));
+    //capabilities.setCapability("app", resourcePath("/apks/Wikipedia.app"));
+    capabilities.setCapability("app", "/Users/andrei/temp/BMI-Calculator-iOS13/build/Release-iphonesimulator/BMI Calculator.app");
     capabilities.setCapability("automationName", "XCUITest");
-    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "6");
+    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 20);
     capabilities.setCapability("autoAcceptAlerts", true);
     return capabilities;
   }

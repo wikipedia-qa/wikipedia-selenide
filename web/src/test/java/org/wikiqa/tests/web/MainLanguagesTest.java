@@ -9,12 +9,12 @@ import org.wikiqa.pages.web.MainPage;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.CollectionCondition.textsInAnyOrder;
 import static com.codeborne.selenide.Selenide.open;
 
 @Tag("web")
 @ExtendWith({WebTestsSetup.class, VideoExtension.class})
-public class MainLanguages {
+public class MainLanguagesTest {
   private final MainPage page = new MainPage();
 
   @BeforeEach
@@ -31,7 +31,7 @@ public class MainLanguages {
   void twoTopLanguagesShouldBeENandDE() {
     page.getTopFeaturedLanguages()
         .first(5)
-        .shouldHave(texts("English", "日本語", "Español", "Deutsch", "Русский"));
+        .shouldHave(textsInAnyOrder("English", "日本語", "Deutsch", "Español", "Русский"));
   }
 
   @Test
