@@ -1,7 +1,7 @@
 defaultTasks 'help'
 
 ext {
-  selenideVersion = '6.3.4'
+  selenideVersion = '6.6.6'
   junitVersion = '5.8.2'
   slf4jVersion = '1.7.36'
 }

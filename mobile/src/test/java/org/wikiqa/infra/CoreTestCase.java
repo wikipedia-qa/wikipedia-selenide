@@ -31,7 +31,9 @@ public class CoreTestCase {
     @AfterEach
     void tearDown() {
         WebDriverRunner.closeWebDriver();
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     protected void rotateScreenPortrait() {

@@ -1,5 +1,5 @@
 dependencies {
-  testImplementation("com.codeborne:selenide-appium:2.0.0")
+  testImplementation("com.codeborne:selenide-appium:2.1.0")
 }
 
 task android(type: Test) {

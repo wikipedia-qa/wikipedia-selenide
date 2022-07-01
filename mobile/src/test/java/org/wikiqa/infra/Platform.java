@@ -2,9 +2,11 @@ package org.wikiqa.infra;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.Capabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -47,32 +49,32 @@ public class Platform {
     return PLATFORM_IOS.equals(name);
   }
 
-  private DesiredCapabilities getAndroidDesiredCapabilities() {
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability("platformName", "Android");
-    capabilities.setCapability("deviceName", "Android Emulator");
-    capabilities.setCapability("version", "4.4.2");
-    capabilities.setCapability("automationName", "Appium");
-    capabilities.setCapability("appPackage", "org.wikipedia");
-    capabilities.setCapability("appActivity", ".main.MainActivity");
-    capabilities.setCapability("app", resourcePath("apks/org.wikipedia.apk"));
-    capabilities.setCapability("newCommandTimeout", 11);
-    return capabilities;
+  private Capabilities getAndroidDesiredCapabilities() {
+    UiAutomator2Options options = new UiAutomator2Options();
+    options.setCapability("platformName", "Android");
+    options.setCapability("deviceName", "Android Emulator");
+    options.setCapability("version", "4.4.2");
+    options.setCapability("automationName", "Appium");
+    options.setCapability("appPackage", "org.wikipedia");
+    options.setCapability("appActivity", ".main.MainActivity");
+    options.setCapability("app", resourcePath("apks/org.wikipedia.apk"));
+    options.setCapability("newCommandTimeout", 11);
+    return options;
   }
 
-  private DesiredCapabilities getIOSDesiredCapabilities() {
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability("platformName", "iOS");
+  private Capabilities getIOSDesiredCapabilities() {
+    XCUITestOptions options = new XCUITestOptions();
+    options.setCapability("platformName", "iOS");
     // Hint: run `xcodebuild -showsdks` to see the list of available SDKs
-    capabilities.setCapability("deviceName", "iPhone Simulator");
+    options.setCapability("deviceName", "iPhone Simulator");
     // Hint: run `xcrun simctl list runtimes` to get available runtimes
-    capabilities.setCapability("platformVersion", "14.4");
-    //capabilities.setCapability("app", resourcePath("/apks/Wikipedia.app"));
-    capabilities.setCapability("app", "/Users/andrei/temp/BMI-Calculator-iOS13/build/Release-iphonesimulator/BMI Calculator.app");
-    capabilities.setCapability("automationName", "XCUITest");
-    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 20);
-    capabilities.setCapability("autoAcceptAlerts", true);
-    return capabilities;
+    options.setCapability("platformVersion", "15.5");
+    options.setCapability("app", resourcePath("apks/Wikipedia.app"));
+    options.setCapability("automationName", "XCUITest");
+    options.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 20);
+    options.setCapability("autoAcceptAlerts", true);
+    options.setFullReset(false);
+    return options;
   }
 
   private String resourcePath(String file) {
